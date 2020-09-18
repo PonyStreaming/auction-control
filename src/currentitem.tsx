@@ -16,7 +16,7 @@ export function CurrentItem(props: CurrentItemProps): ReactElement {
                 <GridList cellHeight={150} cols={2}>
                     {(props.item.images || []).map(x => <GridListTile key={x}><img src={x} alt="" /></GridListTile>)}
                 </GridList>
-                <p>{props.item.description}</p>
+                <p style={{whiteSpace: "pre-wrap"}}>{props.item.description}</p>
                 <p>Start bid: ${(props.item.startBid / 100).toFixed(2)}</p>
                 <Button variant="contained" color="primary" onClick={() => props.auction.closeItem()}>Close item</Button>
             </>

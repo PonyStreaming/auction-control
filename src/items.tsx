@@ -31,18 +31,18 @@ export function ItemList(props: ItemListProps): ReactElement {
     }
 
     const openItems = props.items.filter(x => !x.closed && x.id != props.currentItem?.id);
-    const open = openItems.length == 0 ? <></> : <><ListSubheader>Pending items</ListSubheader>{openItems.map(generateListItem)}</>
+    const open = openItems.length == 0 ? <></> : <><ListSubheader disableSticky={true}>Pending items</ListSubheader>{openItems.map(generateListItem)}</>
     const currentItems = props.items.filter(x => x.id == props.currentItem?.id);
-    const current = currentItems.length == 0 ? <></> : <><ListSubheader>Current item</ListSubheader>{currentItems.map(generateListItem)}</>
+    const current = currentItems.length == 0 ? <></> : <><ListSubheader disableSticky={true}>Current item</ListSubheader>{currentItems.map(generateListItem)}</>
     const closedItems = props.items.filter(x => x.closed && x.id != props.currentItem?.id);
-    const closed = closedItems.length == 0 ? <></> : <><ListSubheader>Closed items</ListSubheader>{closedItems.map(generateListItem)}</>
+    const closed = closedItems.length == 0 ? <></> : <><ListSubheader disableSticky={true}>Closed items</ListSubheader>{closedItems.map(generateListItem)}</>
 
     return (
         <>
         <Card style={{width: 400, margin: 20}}>
             <CardHeader title="Items" />
             <CardContent>
-                <List>
+                <List style={{overflow: "auto", maxHeight: "calc(100vh - 350px)"}}>
                     {open}
                     {current}
                     {closed}
